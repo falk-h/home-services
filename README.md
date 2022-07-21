@@ -35,15 +35,18 @@ sudo sed -E -i 's/#?DNSStubListener=yes/DNSStubListener=no/' /etc/systemd/resolv
 
 Change the `/etc/resolv.conf` symlink to not point to the stub resolver.
 
-```
+```shell
 sudo rm /etc/resolv.conf
 sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
 
 Restart `systemd-resolved`.
 
-```
+```shell
 sudo systemctl restart systemd-resolved
 ```
 
-Set the server as the primary DNS server in the router's settings.
+### Network
+
+Set up the router to give out a static DHCP lease to the server, and use the
+server's IP as the primary DNS server.
