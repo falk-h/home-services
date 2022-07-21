@@ -13,8 +13,6 @@ services:
     volumes:
       - ./godns/config:/config:ro
     restart: unless-stopped
-    depends_on:
-      - pihole
 
   home-assistant:
     image: ghcr.io/home-assistant/home-assistant:stable
@@ -23,8 +21,6 @@ services:
       - ./home-assistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
-    depends_on:
-      - pihole
 
   pihole:
     image: pihole/pihole:latest
@@ -62,8 +58,6 @@ services:
     volumes:
       - ./swag/config:/config
     restart: unless-stopped
-    depends_on:
-      - pihole
 
   website:
     image: website
@@ -73,8 +67,6 @@ services:
         RUST_VERSION: 1.62
         ALPINE_VERSION: 3.16
     restart: unless-stopped
-    depends_on:
-      - pihole
 
 networks:
   default:
