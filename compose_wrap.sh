@@ -13,4 +13,4 @@ LOCAL_IP=$(ip -4 -json address \
 
 export LOCAL_IP
 
-docker-compose "$@"
+docker compose "$@"
