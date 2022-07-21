@@ -1,5 +1,15 @@
 ---
 services:
+  godns:
+    image: godns
+    build:
+      context: ./godns
+      args:
+        GODNS_VERSION: v2.8.4
+        BASE_IMAGE_TAG: 1.18-alpine
+    volumes:
+      - ./godns/config:/config:ro
+
   pihole:
     image: pihole/pihole:latest
     ports:
