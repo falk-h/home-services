@@ -26,7 +26,7 @@ services:
       SUBDOMAINS: home-assistant,pihole,
       VALIDATION: http
       CERTPROVIDER: letsencrypt
-      EMAIL: "${SWAG_EMAIL}"
+      EMAIL: "${SWAG_EMAIL?Run with compose_wrap.sh!}"
       STAGING: 'false'
     volumes:
       - ./swag/config:/config
