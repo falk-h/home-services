@@ -3,6 +3,16 @@ x-variables:
   time-zone: &time-zone Europe/Stockholm
 
 services:
+  home-assistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - ./home-assistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - pihole
+
   swag:
     image: lscr.io/linuxserver/swag:latest
     ports:
@@ -13,7 +23,7 @@ services:
     environment:
       TZ: *time-zone
       URL: hoppner.se
-      SUBDOMAINS: pihole,
+      SUBDOMAINS: home-assistant,pihole,
       VALIDATION: http
       CERTPROVIDER: letsencrypt
       EMAIL: "${SWAG_EMAIL}"
@@ -33,6 +43,7 @@ services:
         BASE_IMAGE_TAG: 1.18-alpine
     volumes:
       - ./godns/config:/config:ro
+    restart: unless-stopped
 
   pihole:
     image: pihole/pihole:latest
@@ -51,3 +62,11 @@ services:
       - ./pihole/config:/etc/pihole
       - ./pihole/dnsmasq.d:/etc/dnsmasq.d
     restart: unless-stopped
+
+networks:
+  default:
+    ipam:
+      config:
+        # Give the default Docker network a predictable IP address range so we
+        # can give Home Assistant an IP range of trusted proxies.
+        - subnet: 172.10.0.0/24
