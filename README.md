@@ -13,7 +13,7 @@ These are the services running on my home server.
 
 Fill in [`env.template`](./env.template) and copy it to `.env`.
 
-Fill in GoDNS's [`config.yaml.template`](./godns/config/config.yaml.template)
+Fill in GoDNS's [`config.template.yaml`](./godns/config/config.template.yaml)
 and copy it to `godns/config/config.yaml`.
 
 ### GoDNS
