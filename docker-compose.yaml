@@ -1,5 +1,29 @@
 ---
+x-variables:
+  time-zone: &time-zone Europe/Stockholm
+
 services:
+  swag:
+    image: lscr.io/linuxserver/swag:latest
+    ports:
+      - 80:80
+      - 443:443
+    cap_add:
+      - NET_ADMIN
+    environment:
+      TZ: *time-zone
+      URL: hoppner.se
+      SUBDOMAINS: pihole,
+      VALIDATION: http
+      CERTPROVIDER: letsencrypt
+      EMAIL: "${SWAG_EMAIL}"
+      STAGING: 'false'
+    volumes:
+      - ./swag/config:/config
+    restart: unless-stopped
+    depends_on:
+      - pihole
+
   godns:
     image: godns
     build:
@@ -16,13 +40,11 @@ services:
       # DNS ports
       - 53:53/tcp
       - 53:53/udp
-
-      # For the web interface
-      - 80:80/tcp
+      # Don't open HTTP here as that's reverse proxied by SWAG
     environment:
       FTLCONF_REPLY_ADDR4: "${LOCAL_IP?Run with compose_wrap.sh!}"
       PIHOLE_DNS_: 1.1.1.1;1.0.0.1
-      TZ: Europe/Stockholm
+      TZ: *time-zone
       WEBPASSWORD: "${PIHOLE_WEB_PASSWORD?Run with compose_wrap.sh!}"
       WEBTHEME: default-dark
     volumes:
