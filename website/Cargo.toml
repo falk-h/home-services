@@ -1,0 +1,21 @@
+[package]
+name = "website"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.5.13"
+tower = "0.4.13"
+
+[dependencies.clap]
+features = ["derive", "env"]
+version = "3.2.14"
+
+[dependencies.tokio]
+version = "1.20.0"
+features = ["macros", "signal"]
+
+[profile.release]
+codegen-units = 1
+lto = true
+strip = true

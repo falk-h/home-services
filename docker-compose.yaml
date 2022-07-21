@@ -65,6 +65,17 @@ services:
     depends_on:
       - pihole
 
+  website:
+    image: website
+    build:
+      context: ./website
+      args:
+        RUST_VERSION: 1.62
+        ALPINE_VERSION: 3.16
+    restart: unless-stopped
+    depends_on:
+      - pihole
+
 networks:
   default:
     ipam:
