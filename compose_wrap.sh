@@ -11,7 +11,7 @@ if ! [[ -f .env ]]; then
     exit 1
 fi
 
-# Needed for pihole
+# Needed for Pi-Hole
 LOCAL_IP=$(ip -4 -json address \
     | jq -r '.[] | select(.ifname | test("enp.*")) | .addr_info[0].local')
 export LOCAL_IP

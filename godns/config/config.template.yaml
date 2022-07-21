@@ -10,5 +10,5 @@ domains:
   - domain_name: hoppner.se
     sub_domains:
       - cloud
-      - pihole
+      - pi-hole
       - home-assistant

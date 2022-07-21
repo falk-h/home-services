@@ -22,7 +22,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
 
-  pihole:
+  pi-hole:
     image: pihole/pihole:latest
     ports:
       # DNS ports
@@ -36,8 +36,8 @@ services:
       WEBPASSWORD: "${PIHOLE_WEB_PASSWORD?Run with compose_wrap.sh!}"
       WEBTHEME: default-dark
     volumes:
-      - ./pihole/config:/etc/pihole
-      - ./pihole/dnsmasq.d:/etc/dnsmasq.d
+      - ./pi-hole/config:/etc/pihole
+      - ./pi-hole/dnsmasq.d:/etc/dnsmasq.d
     restart: unless-stopped
 
   swag:
@@ -50,7 +50,7 @@ services:
     environment:
       TZ: *time-zone
       URL: hoppner.se
-      SUBDOMAINS: home-assistant,pihole,
+      SUBDOMAINS: home-assistant,pi-hole,
       VALIDATION: http
       CERTPROVIDER: letsencrypt
       EMAIL: "${SWAG_EMAIL?Run with compose_wrap.sh!}"
