@@ -3,6 +3,17 @@ x-variables:
   time-zone: &time-zone Europe/Stockholm
 
 services:
+  godns:
+    image: godns
+    build:
+      context: ./godns
+      args:
+        GODNS_VERSION: v2.8.4
+        BASE_IMAGE_TAG: 1.18-alpine
+    volumes:
+      - ./godns/config:/config:ro
+    restart: unless-stopped
+
   home-assistant:
     image: ghcr.io/home-assistant/home-assistant:stable
     restart: unless-stopped
@@ -12,6 +23,24 @@ services:
       - /etc/localtime:/etc/localtime:ro
     depends_on:
       - pihole
+
+  pihole:
+    image: pihole/pihole:latest
+    ports:
+      # DNS ports
+      - 53:53/tcp
+      - 53:53/udp
+      # Don't open HTTP here as that's reverse proxied by SWAG
+    environment:
+      FTLCONF_REPLY_ADDR4: "${LOCAL_IP?Run with compose_wrap.sh!}"
+      PIHOLE_DNS_: 1.1.1.1;1.0.0.1
+      TZ: *time-zone
+      WEBPASSWORD: "${PIHOLE_WEB_PASSWORD?Run with compose_wrap.sh!}"
+      WEBTHEME: default-dark
+    volumes:
+      - ./pihole/config:/etc/pihole
+      - ./pihole/dnsmasq.d:/etc/dnsmasq.d
+    restart: unless-stopped
 
   swag:
     image: lscr.io/linuxserver/swag:latest
@@ -33,35 +62,6 @@ services:
     restart: unless-stopped
     depends_on:
       - pihole
-
-  godns:
-    image: godns
-    build:
-      context: ./godns
-      args:
-        GODNS_VERSION: v2.8.4
-        BASE_IMAGE_TAG: 1.18-alpine
-    volumes:
-      - ./godns/config:/config:ro
-    restart: unless-stopped
-
-  pihole:
-    image: pihole/pihole:latest
-    ports:
-      # DNS ports
-      - 53:53/tcp
-      - 53:53/udp
-      # Don't open HTTP here as that's reverse proxied by SWAG
-    environment:
-      FTLCONF_REPLY_ADDR4: "${LOCAL_IP?Run with compose_wrap.sh!}"
-      PIHOLE_DNS_: 1.1.1.1;1.0.0.1
-      TZ: *time-zone
-      WEBPASSWORD: "${PIHOLE_WEB_PASSWORD?Run with compose_wrap.sh!}"
-      WEBTHEME: default-dark
-    volumes:
-      - ./pihole/config:/etc/pihole
-      - ./pihole/dnsmasq.d:/etc/dnsmasq.d
-    restart: unless-stopped
 
 networks:
   default:
