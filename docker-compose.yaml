@@ -1,0 +1,21 @@
+---
+services:
+  pihole:
+    image: pihole/pihole:latest
+    ports:
+      # DNS ports
+      - 53:53/tcp
+      - 53:53/udp
+
+      # For the web interface
+      - 80:80/tcp
+    environment:
+      FTLCONF_REPLY_ADDR4: "${LOCAL_IP?Run with compose_wrap.sh!}"
+      PIHOLE_DNS_: 1.1.1.1;1.0.0.1
+      TZ: Europe/Stockholm
+      WEBPASSWORD: "${PIHOLE_WEB_PASSWORD?Run with compose_wrap.sh!}"
+      WEBTHEME: default-dark
+    volumes:
+      - ./pihole/config:/etc/pihole
+      - ./pihole/dnsmasq.d:/etc/dnsmasq.d
+    restart: unless-stopped
