@@ -1,7 +1,7 @@
 ---
 provider: Cloudflare
-email: 'E-mail address'
-login_token: 'API Token from https://dash.cloudflare.com/profile/api-tokens'
+email: foo@example.com
+login_token: abc123  # From https://dash.cloudflare.com/profile/api-tokens
 resolver: 1.1.1.1
 ip_url: https://api.ipify.org/
 ip_type: IPv4
