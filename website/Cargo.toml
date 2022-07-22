@@ -5,14 +5,17 @@ edition = "2021"
 
 [dependencies]
 axum = "0.5.13"
-tower = "0.4.13"
 mime_guess = "2.0.4"
 thiserror = "1.0.31"
-pulldown-cmark = { version = "0.9.1", features = ["simd"] }
+tower = "0.4.13"
 
 [dependencies.clap]
 features = ["derive", "env"]
 version = "3.2.14"
+
+[dependencies.pulldown-cmark]
+version = "0.9.1"
+features = ["simd"]
 
 [dependencies.tokio]
 version = "1.20.0"
