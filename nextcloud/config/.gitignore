@@ -1,0 +1,2 @@
+# Explicitly ignore all files, so that individual config files can be added selectively
+*

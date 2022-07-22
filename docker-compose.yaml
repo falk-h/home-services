@@ -22,6 +22,15 @@ services:
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
 
+  nextcloud:
+    image: lscr.io/linuxserver/nextcloud:latest
+    environment:
+      TZ: *time-zone
+    volumes:
+      - ./nextcloud/config:/config
+      - ./nextcloud/data:/data
+    restart: unless-stopped
+
   pi-hole:
     image: pihole/pihole:latest
     ports:
@@ -50,7 +59,7 @@ services:
     environment:
       TZ: *time-zone
       URL: hoppner.se
-      SUBDOMAINS: home-assistant,pi-hole,
+      SUBDOMAINS: nextcloud,home-assistant,pi-hole,
       VALIDATION: http
       CERTPROVIDER: letsencrypt
       EMAIL: "${SWAG_EMAIL?Run with compose_wrap.sh!}"
