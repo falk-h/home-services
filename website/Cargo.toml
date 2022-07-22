@@ -6,6 +6,8 @@ edition = "2021"
 [dependencies]
 axum = "0.5.13"
 tower = "0.4.13"
+mime_guess = "2.0.4"
+thiserror = "1.0.31"
 
 [dependencies.clap]
 features = ["derive", "env"]
@@ -13,7 +15,7 @@ version = "3.2.14"
 
 [dependencies.tokio]
 version = "1.20.0"
-features = ["macros", "signal"]
+features = ["fs", "macros", "signal"]
 
 [profile.release]
 codegen-units = 1

@@ -1,34 +1,40 @@
-use std::{error::Error, future::Future, net::SocketAddr};
+mod errors;
+mod options;
+mod static_content;
 
-use axum::{response::Html, routing, Router};
+pub use errors::Error;
+
+use std::{error::Error as StdError, future::Future};
+
+use axum::{response::Html, routing, Extension, Router};
 use clap::Parser;
 use tokio::{
     select,
     signal::unix::{signal, SignalKind},
 };
 
-#[derive(Debug, Parser)]
-struct Args {
-    /// Socket address to listen on.
-    #[clap(short, long, env, default_value = "0.0.0.0:80")]
-    listen_addr: SocketAddr,
-}
+use options::Options;
 
 static INDEX: &str = include_str!("../html/index.html");
 
-fn make_server(args: &Args) -> impl Future {
-    let app = Router::new().route("/", routing::get(|| async { Html(INDEX) }));
-    axum::Server::bind(&args.listen_addr).serve(app.into_make_service())
+fn make_server(opts: &'static Options) -> impl Future {
+    let app = Router::new()
+        .route("/", routing::get(|| async { Html(INDEX) }))
+        .route("/static/*path", routing::get(static_content::handler))
+        .layer(Extension(opts));
+    // .fallback(errors::not_found.into_service());
+    axum::Server::bind(&opts.listen_addr).serve(app.into_make_service())
 }
 
 // Single-threaded runtime because we're not expecting much load
 #[tokio::main(flavor = "current_thread")]
-async fn main() -> Result<(), Box<dyn Error>> {
-    let args = Args::parse();
+async fn main() -> Result<(), Box<dyn StdError>> {
+    let opts = Options::parse();
+    let opts = Box::leak(Box::new(opts));
 
     let mut sigint = signal(SignalKind::interrupt())?;
     let mut sigterm = signal(SignalKind::terminate())?;
-    let server = make_server(&args);
+    let server = make_server(opts);
 
     let signal: &str;
 
