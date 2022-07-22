@@ -39,7 +39,7 @@ fn make_server(opts: &'static Options, shared_state: &'static State) -> impl Fut
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn StdError>> {
     let opts = Options::parse();
-    let state = Box::leak(Box::new(State::new(&opts)));
+    let state = Box::leak(Box::new(State::new(&opts).await));
     let opts = Box::leak(Box::new(opts));
 
     let mut sigint = signal(SignalKind::interrupt())?;

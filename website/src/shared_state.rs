@@ -9,9 +9,9 @@ pub struct State {
 }
 
 impl State {
-    pub fn new(opts: &Options) -> Self {
+    pub async fn new(opts: &Options) -> Self {
         Self {
-            md_renderer: Mutex::new(MdRenderer::new(&opts.markdown_dir)),
+            md_renderer: Mutex::new(MdRenderer::new(&opts.markdown_dir, &opts.template_dir).await),
         }
     }
 }

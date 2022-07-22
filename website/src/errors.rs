@@ -9,6 +9,7 @@ use axum::{
     http::StatusCode,
     response::{Html, IntoResponse, Response},
 };
+use handlebars::RenderError;
 use thiserror::Error;
 
 #[derive(Debug, Error)]
@@ -18,6 +19,9 @@ pub enum Error {
 
     #[error("Path manipulation error")]
     PathManip(#[from] StripPrefixError),
+
+    #[error("Template rendering error")]
+    Handlebars(#[from] RenderError),
 }
 
 impl IntoResponse for Error {

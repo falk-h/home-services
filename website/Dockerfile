@@ -30,6 +30,11 @@ COPY --from=builder /website/target/release/website /website
 
 VOLUME /markdown
 VOLUME /static
+VOLUME /templates
 
 ENTRYPOINT [ "/website" ]
-CMD [ "--markdown-dir", "/markdown", "--static-dir", "/static" ]
+CMD [ \
+    "--markdown-dir", "/markdown", \
+    "--static-dir", "/static", \
+    "--template-dir", "/templates" \
+]
