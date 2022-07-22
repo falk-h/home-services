@@ -15,7 +15,7 @@ use tokio::fs;
 
 use crate::{shared_state::State, util, Error};
 
-const BASE_TEMPLATE: &str = "base.html";
+const BASE_TEMPLATE: &str = "base.hbs";
 
 #[derive(Debug)]
 pub struct MdRenderer {
