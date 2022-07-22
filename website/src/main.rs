@@ -2,7 +2,6 @@ mod errors;
 pub use errors::Error;
 mod markdown;
 mod options;
-mod posts;
 mod shared_state;
 mod static_content;
 mod util;
@@ -31,7 +30,7 @@ fn make_server(opts: &'static Options, shared_state: &'static State) -> impl Fut
         .fallback(
             ServiceBuilder::new()
                 .layer(Extension(shared_state))
-                .service(posts::handler.into_service()),
+                .service(markdown::handler.into_service()),
         );
     axum::Server::bind(&opts.listen_addr).serve(app.into_make_service())
 }
