@@ -13,6 +13,6 @@ pub struct Options {
     pub static_dir: PathBuf,
 
     /// Directory with Markdown content.
-    #[clap(short, long, env, default_value = "./md")]
+    #[clap(short, long, env, default_value = "./markdown")]
     pub markdown_dir: PathBuf,
 }

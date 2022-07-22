@@ -1,28 +1,38 @@
 mod errors;
-mod options;
-mod static_content;
-
 pub use errors::Error;
+mod markdown;
+mod options;
+mod posts;
+mod shared_state;
+mod static_content;
+mod util;
 
 use std::{error::Error as StdError, future::Future};
 
-use axum::{response::Html, routing, Extension, Router};
+use axum::{handler::Handler, routing, Extension, Router};
 use clap::Parser;
 use tokio::{
     select,
     signal::unix::{signal, SignalKind},
 };
+use tower::ServiceBuilder;
 
 use options::Options;
+use shared_state::State;
 
-static INDEX: &str = include_str!("../html/index.html");
-
-fn make_server(opts: &'static Options) -> impl Future {
+fn make_server(opts: &'static Options, shared_state: &'static State) -> impl Future {
     let app = Router::new()
-        .route("/", routing::get(|| async { Html(INDEX) }))
         .route("/static/*path", routing::get(static_content::handler))
-        .layer(Extension(opts));
-    // .fallback(errors::not_found.into_service());
+        .layer(
+            ServiceBuilder::new()
+                .layer(Extension(shared_state))
+                .layer(Extension(opts)),
+        )
+        .fallback(
+            ServiceBuilder::new()
+                .layer(Extension(shared_state))
+                .service(posts::handler.into_service()),
+        );
     axum::Server::bind(&opts.listen_addr).serve(app.into_make_service())
 }
 
@@ -30,11 +40,13 @@ fn make_server(opts: &'static Options) -> impl Future {
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn StdError>> {
     let opts = Options::parse();
+    let state = Box::leak(Box::new(State::new(&opts)));
     let opts = Box::leak(Box::new(opts));
 
     let mut sigint = signal(SignalKind::interrupt())?;
     let mut sigterm = signal(SignalKind::terminate())?;
-    let server = make_server(opts);
+
+    let server = make_server(opts, state);
 
     let signal: &str;
 

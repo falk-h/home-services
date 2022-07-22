@@ -75,6 +75,9 @@ services:
       args:
         RUST_VERSION: 1.62
         ALPINE_VERSION: 3.16
+    volumes:
+      - ./website/markdown:/markdown:ro
+      - ./website/static:/static:ro
     restart: unless-stopped
 
 networks:

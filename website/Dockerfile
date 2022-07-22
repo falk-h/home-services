@@ -17,15 +17,19 @@ WORKDIR /website
 # Only build dependencies at first to be more cache-friendly
 COPY Cargo.toml Cargo.lock .cargo ./
 RUN set -xeu; \
-    cargo build --release --locked --verbose; \
+    cargo build --release --no-default-features --locked --verbose; \
     rm src/*.rs ./target/release/deps/website*
 
 # Time to build for real
 COPY . .
-RUN cargo build --release --locked --verbose
+RUN cargo build --release --no-default-features --locked --verbose
 
 FROM alpine:${ALPINE_VERSION:-latest}
 
 COPY --from=builder /website/target/release/website /website
 
+VOLUME /markdown
+VOLUME /static
+
 ENTRYPOINT [ "/website" ]
+CMD [ "--markdown-dir", "/markdown", "--static-dir", "/static" ]

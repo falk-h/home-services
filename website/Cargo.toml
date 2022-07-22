@@ -8,6 +8,7 @@ axum = "0.5.13"
 tower = "0.4.13"
 mime_guess = "2.0.4"
 thiserror = "1.0.31"
+pulldown-cmark = { version = "0.9.1", features = ["simd"] }
 
 [dependencies.clap]
 features = ["derive", "env"]
@@ -21,3 +22,7 @@ features = ["fs", "macros", "signal"]
 codegen-units = 1
 lto = true
 strip = true
+
+[features]
+default = ["debug"]
+debug = ["axum/macros"] # Enable debug macros only in debug builds
