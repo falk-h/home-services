@@ -1,0 +1,405 @@
+:root {
+    --bg: #1f1f28;
+    --fg: #dcd7ba;
+    --fg-bright: #7e9cd8;
+    --accent: #ffa066;
+    --bg-shadow: #7e9cd8;
+    --header-shadow: #97ba6b;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 2em;
+    color: var(--accent);
+}
+
+body {
+    margin: 5% auto;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: medium;
+    line-height: 1.8;
+}
+
+/* @media not (prefers-reduced-motion: reduce) { */
+    body {
+        animation-name: tv-effect;
+        animation-duration: 1.5s;
+        animation-timing-function: cubic-bezier(0.1, 0.6, 0, 1);
+    }
+
+    body *:hover {
+        animation-name: shake;
+        animation-iteration-count: infinite;
+        animation-duration: 2s;
+    }
+/* } */
+
+@media (pointer: fine) {
+    /* Desktop */
+    body {
+        max-width: 40em;
+    }
+}
+@media (max-width: 40em) or (not (pointer: fine)) {
+    /* Mobile */
+    body {
+        max-width: 94%;
+    }
+}
+
+a {
+    border-bottom: 1px solid var(--fg);
+    color: var(--fg);
+    text-decoration: none;
+}
+
+a:hover {
+    border-bottom: 1px solid var(--accent);
+}
+
+li,
+p::first-line {
+    font-weight: bold;
+}
+
+li::marker {
+    color: var(--accent);
+}
+
+@keyframes tv-effect {
+    from {
+        opacity: 0;
+        transform: scale(1, 0);
+        background: var(--fg);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+        background: var(--bg);
+    }
+}
+
+* {
+    scrollbar-color: var(--accent) var(--bg);
+}
+*::-webkit-scrollbar {
+    background-color: var(--bg);
+    width: 1px;
+}
+*::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 1px;
+}
+
+@keyframes shake {
+    from {
+        transform: translate(0, 0);
+    }
+    1% {
+        transform: translate(2px, 2px);
+    }
+    2% {
+        transform: translate(2px, 2px);
+    }
+    3% {
+        transform: translate(0, 0);
+    }
+    4% {
+        transform: translate(-2px, 2px);
+    }
+    5% {
+        transform: translate(-2px, 0);
+    }
+    6% {
+        transform: translate(2px, -2px);
+    }
+    7% {
+        transform: translate(-2px, 0);
+    }
+    8% {
+        transform: translate(-2px, -2px);
+    }
+    9% {
+        transform: translate(2px, 0);
+    }
+    10% {
+        transform: translate(2px, -2px);
+    }
+    11% {
+        transform: translate(-2px, 2px);
+    }
+    12% {
+        transform: translate(0, 0);
+    }
+    13% {
+        transform: translate(2px, 2px);
+    }
+    14% {
+        transform: translate(-2px, 2px);
+    }
+    15% {
+        transform: translate(0, 0);
+    }
+    16% {
+        transform: translate(2px, -2px);
+    }
+    17% {
+        transform: translate(2px, 2px);
+    }
+    18% {
+        transform: translate(2px, 2px);
+    }
+    19% {
+        transform: translate(0, 0);
+    }
+    20% {
+        transform: translate(0, -2px);
+    }
+    21% {
+        transform: translate(-2px, -2px);
+    }
+    22% {
+        transform: translate(2px, 0);
+    }
+    23% {
+        transform: translate(0, -2px);
+    }
+    24% {
+        transform: translate(0, 2px);
+    }
+    25% {
+        transform: translate(0, 2px);
+    }
+    26% {
+        transform: translate(2px, 0);
+    }
+    27% {
+        transform: translate(-2px, 2px);
+    }
+    28% {
+        transform: translate(0, 0);
+    }
+    29% {
+        transform: translate(0, -2px);
+    }
+    30% {
+        transform: translate(-2px, -2px);
+    }
+    31% {
+        transform: translate(0, 0);
+    }
+    32% {
+        transform: translate(-2px, 0);
+    }
+    33% {
+        transform: translate(2px, -2px);
+    }
+    34% {
+        transform: translate(2px, 0);
+    }
+    35% {
+        transform: translate(2px, 0);
+    }
+    36% {
+        transform: translate(-2px, 2px);
+    }
+    37% {
+        transform: translate(2px, 2px);
+    }
+    38% {
+        transform: translate(-2px, 2px);
+    }
+    39% {
+        transform: translate(2px, 0);
+    }
+    40% {
+        transform: translate(-2px, 0);
+    }
+    41% {
+        transform: translate(2px, 0);
+    }
+    42% {
+        transform: translate(-2px, 0);
+    }
+    43% {
+        transform: translate(0, 2px);
+    }
+    44% {
+        transform: translate(2px, 0);
+    }
+    45% {
+        transform: translate(0, -2px);
+    }
+    46% {
+        transform: translate(-2px, 0);
+    }
+    47% {
+        transform: translate(0, 0);
+    }
+    48% {
+        transform: translate(2px, 0);
+    }
+    49% {
+        transform: translate(-2px, 0);
+    }
+    50% {
+        transform: translate(0, -2px);
+    }
+    51% {
+        transform: translate(0, 2px);
+    }
+    52% {
+        transform: translate(0, 0);
+    }
+    53% {
+        transform: translate(-2px, -2px);
+    }
+    54% {
+        transform: translate(-2px, 2px);
+    }
+    55% {
+        transform: translate(-2px, 2px);
+    }
+    56% {
+        transform: translate(0, 0);
+    }
+    57% {
+        transform: translate(2px, 2px);
+    }
+    58% {
+        transform: translate(-2px, 0);
+    }
+    59% {
+        transform: translate(0, 2px);
+    }
+    60% {
+        transform: translate(0, -2px);
+    }
+    61% {
+        transform: translate(0, -2px);
+    }
+    62% {
+        transform: translate(2px, 0);
+    }
+    63% {
+        transform: translate(0, -2px);
+    }
+    64% {
+        transform: translate(2px, -2px);
+    }
+    65% {
+        transform: translate(2px, 0);
+    }
+    66% {
+        transform: translate(2px, -2px);
+    }
+    67% {
+        transform: translate(-2px, 2px);
+    }
+    68% {
+        transform: translate(-2px, 0);
+    }
+    69% {
+        transform: translate(2px, 2px);
+    }
+    70% {
+        transform: translate(-2px, 0);
+    }
+    71% {
+        transform: translate(-2px, -2px);
+    }
+    72% {
+        transform: translate(-2px, 0);
+    }
+    73% {
+        transform: translate(0, 0);
+    }
+    74% {
+        transform: translate(2px, 2px);
+    }
+    75% {
+        transform: translate(0, 2px);
+    }
+    76% {
+        transform: translate(-2px, -2px);
+    }
+    77% {
+        transform: translate(2px, 0);
+    }
+    78% {
+        transform: translate(0, 2px);
+    }
+    79% {
+        transform: translate(-2px, 2px);
+    }
+    80% {
+        transform: translate(2px, 2px);
+    }
+    81% {
+        transform: translate(2px, 2px);
+    }
+    82% {
+        transform: translate(2px, 2px);
+    }
+    83% {
+        transform: translate(2px, -2px);
+    }
+    84% {
+        transform: translate(0, 0);
+    }
+    85% {
+        transform: translate(-2px, 2px);
+    }
+    86% {
+        transform: translate(-2px, -2px);
+    }
+    87% {
+        transform: translate(0, 0);
+    }
+    88% {
+        transform: translate(-2px, -2px);
+    }
+    89% {
+        transform: translate(0, 0);
+    }
+    90% {
+        transform: translate(-2px, 0);
+    }
+    91% {
+        transform: translate(2px, 0);
+    }
+    92% {
+        transform: translate(-2px, -2px);
+    }
+    93% {
+        transform: translate(0, 0);
+    }
+    94% {
+        transform: translate(2px, -2px);
+    }
+    95% {
+        transform: translate(2px, -2px);
+    }
+    96% {
+        transform: translate(0, 2px);
+    }
+    97% {
+        transform: translate(-2px, 2px);
+    }
+    98% {
+        transform: translate(2px, 0);
+    }
+    99% {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(-2px, -2px);
+    }
+}
