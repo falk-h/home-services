@@ -41,13 +41,28 @@ RUN cargo install \
 
 FROM alpine:${ALPINE_VERSION:-latest}
 
-COPY --from=builder /usr/local/cargo/bin/website /website
+ENV DIR=/app/ \
+    USER=appuser
+
+RUN set -xeu; \
+    addgroup -S "$USER"; \
+    adduser -S -G "$USER" "$USER"
+
+COPY --from=builder /usr/local/cargo/bin/website $DIR
+
+RUN chown -R "$USER:$USER" "$DIR"
+
+USER $USER
+WORKDIR $DIR
+EXPOSE 80
+
+ENV RUST_BACKTRACE=1
 
 VOLUME /markdown
 VOLUME /static
 VOLUME /templates
 
-ENTRYPOINT [ "/website" ]
+ENTRYPOINT [ "./website" ]
 CMD [ \
     "--markdown-dir", "/markdown", \
     "--static-dir", "/static", \
