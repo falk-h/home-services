@@ -14,19 +14,34 @@ RUN cargo new --bin website
 
 WORKDIR /website
 
-# Only build dependencies at first to be more cache-friendly
+ARG RUST_PROFILE=dev
+
+# Only copy what we need to build our dependencies at first, and build
+# dependencies separately from the binary so that they don't have to be
+# recompiled if only our code changes.
 COPY Cargo.toml Cargo.lock .cargo ./
 RUN set -xeu; \
-    cargo build --release --no-default-features --locked --verbose; \
-    rm src/*.rs ./target/release/deps/website*
+    cargo build \
+        --profile "${RUST_PROFILE}" \
+        --no-default-features \
+        --locked \
+        --verbose; \
+    rm src/*.rs ./target/*/deps/website*
 
-# Time to build for real
-COPY . .
-RUN cargo build --release --no-default-features --locked --verbose
+# Time to build for real. Use `cargo install` instead of `cargo build` here so
+# that the binary is always placed in the same location, regardless of profile.
+COPY src src
+RUN cargo install \
+    --path . \
+    --profile "${RUST_PROFILE}" \
+    --no-default-features \
+    --offline \
+    --locked \
+    --verbose
 
 FROM alpine:${ALPINE_VERSION:-latest}
 
-COPY --from=builder /website/target/release/website /website
+COPY --from=builder /usr/local/cargo/bin/website /website
 
 VOLUME /markdown
 VOLUME /static
