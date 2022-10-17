@@ -11,6 +11,7 @@ use axum::{
     routing, Extension, Router,
 };
 use clap::Parser;
+use mimalloc::MiMalloc;
 use tera::Context;
 use tokio::{
     select,
@@ -32,6 +33,9 @@ use errors::Error;
 use options::Options;
 use rendering::Renderer;
 use services::StatusChecker;
+
+#[global_allocator]
+static ALLOC: MiMalloc = MiMalloc;
 
 // Single-threaded runtime because we're not expecting much load
 #[tokio::main(flavor = "current_thread")]
