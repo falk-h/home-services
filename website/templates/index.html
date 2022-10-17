@@ -1,0 +1,37 @@
+{% import "base.html" as base %}
+
+{{ base::header(title="Hi!") }}
+
+<h1>This is my website</h1>
+<p>It's a bit of a work in progress at the moment...</p>
+
+<h2>Status</h2>
+
+<ul>
+    {% for service in services %}
+        <li>
+            <a href="{{service.link}}">{{service.name}}</a>:
+            <span
+                title="{{service.status.description}}"
+                {% if service.status.is_up %}
+                    class="good"
+                {% else %}
+                    class="bad"
+                {% endif %}
+            >
+                {% if service.status.is_up %}
+                    Up
+                {% else %}
+                    Down
+                {% endif %}
+            </span>
+            {% if not service.status.is_up %}
+            : {{service.status.description}}
+            {% else %}
+            {% endif %}
+
+        </li>
+    {% endfor %}
+</ul>
+
+{{ base::footer() }}

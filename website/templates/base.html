@@ -1,0 +1,26 @@
+{% macro header(title="No title") %}
+    <!DOCTYPE html>
+    <html lang="en-US">
+        <head>
+            <meta charset="utf-8">
+
+            <link href="/favicon.svg" rel="icon" sizes="any" />
+            <link href="/static/base.css" rel="stylesheet" />
+            <link href="/static/shadows.css" rel="stylesheet" />
+
+            <title>{{ title }}</title>
+        </head>
+        <body>
+            <div id="container">
+                <div id="content">
+{% endmacro header %}
+
+{% macro footer(title="No title") %}
+                </div>
+                <div id="flex"></div>
+                <footer>Best viewed in Netscape&reg; Navigator version 1.22</footer>
+                <!-- <div id="test">Best viewed in Netscape&#38;reg; Navigator version 1.22</div> -->
+            </div>
+        </body>
+    </html>
+{% endmacro footer %}

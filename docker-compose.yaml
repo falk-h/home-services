@@ -4,7 +4,6 @@ x-variables:
 
 services:
   godns:
-    image: godns
     build:
       context: ./godns
       args:
@@ -69,13 +68,14 @@ services:
     restart: unless-stopped
 
   website:
-    image: website
     build:
       context: ./website
       args:
-        RUST_VERSION: 1.62
+        RUST_VERSION: 1.64
         ALPINE_VERSION: 3.16
-        RUST_PROFILE: release
+        RUST_PROFILE: ${RUST_PROFILE:-release}
+    environment:
+      RUST_LOG: "${RUST_LOG:-info,tower_http::trace=debug}"
     volumes:
       - ./website/markdown:/markdown:ro
       - ./website/templates:/templates:ro

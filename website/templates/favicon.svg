@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="13" height="13" xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <g transform="rotate({{ rand_f64(max=360.0) }} 6.5 6.5)">
+            <rect x="-10" y="2" width="33" height="2" fill="#97ba6b" />
+            <rect x="-10" y="4" width="33" height="5" fill="#ffa066" />
+            <rect x="-10" y="9" width="33" height="2" fill="#97ba6b" />
+        </g>
+    </g>
+</svg>
