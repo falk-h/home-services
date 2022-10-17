@@ -63,13 +63,11 @@ EXPOSE 80
 
 ENV RUST_BACKTRACE=1
 
-VOLUME /markdown
 VOLUME /static
 VOLUME /templates
 
 ENTRYPOINT [ "./website" ]
 CMD [ \
-    "--markdown-dir", "/markdown", \
     "--static-dir", "/static", \
     "--template-dir", "/templates" \
 ]
