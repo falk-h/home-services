@@ -5,7 +5,8 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.65"
-axum = { version = "0.6.0-rc.2", default-features = false, features = [] }
+axum = { version = "0.6.0-rc.2", default-features = false }
+clap = { version = "4.0.15", features = ["derive", "env"] }
 futures = { version = "0.3.24", default-features = false }
 humantime = "2.1.0"
 minify-html = "0.10.2"
@@ -20,6 +21,7 @@ serde_derive = { version = "1.0.145", features = ["deserialize_in_place"] }
 serde_json = { version = "1.0.86", default-features = false }
 tera = { version = "1.17.1", default-features = false }
 thiserror = "1.0.37"
+tokio = { version = "1.21.2", features = ["fs", "macros", "signal"] }
 tower = { version = "0.4.13", features = ["util"] }
 tower-http = { version = "0.3.4", features = [
     "fs",
@@ -35,14 +37,6 @@ tracing-subscriber = { version = "0.3.16", default-features = false, features = 
     "env-filter",
 ] }
 trust-dns-resolver = "0.22.0"
-
-[dependencies.clap]
-features = ["derive", "env"]
-version = "4.0.15"
-
-[dependencies.tokio]
-version = "1.21.2"
-features = ["fs", "macros", "signal"]
 
 [profile.release]
 codegen-units = 1
