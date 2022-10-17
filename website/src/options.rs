@@ -12,10 +12,6 @@ pub struct Options {
     #[clap(short, long, env, default_value = "static")]
     pub static_dir: PathBuf,
 
-    /// Directory with Markdown content.
-    #[clap(short, long, env, default_value = "markdown")]
-    pub markdown_dir: PathBuf,
-
     /// Directory with misc. templates.
     #[clap(short, long, env, default_value = "templates")]
     pub template_dir: PathBuf,
