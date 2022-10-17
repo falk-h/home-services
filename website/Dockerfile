@@ -16,14 +16,19 @@ WORKDIR /website
 
 ARG RUST_PROFILE=dev
 
+# Incremental builds aren't helpful here.
+ENV CARGO_INCREMENTAL=0
+
 # Only copy what we need to build our dependencies at first, and build
 # dependencies separately from the binary so that they don't have to be
 # recompiled if only our code changes.
 COPY Cargo.toml Cargo.lock .cargo ./
+RUN cargo fetch -v
 RUN set -xeu; \
     cargo build \
         --profile "${RUST_PROFILE}" \
         --no-default-features \
+        --offline \
         --locked \
         --verbose; \
     rm src/*.rs ./target/*/deps/website*
