@@ -7,8 +7,8 @@ services:
     build:
       context: ./godns
       args:
-        GODNS_VERSION: v2.8.4
-        BASE_IMAGE_TAG: 1.18-alpine
+        GODNS_VERSION: v2.9.3
+        BASE_IMAGE_TAG: 1.20-alpine
     volumes:
       - ./godns/config:/config:ro
     restart: unless-stopped
