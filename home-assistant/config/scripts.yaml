@@ -1,1 +1,8 @@
----
+new_script:
+  alias: New Script
+  sequence:
+  - type: toggle
+    device_id: a9e34b74e2aa187f98f015a5cd2df496
+    entity_id: switch.amplifier
+    domain: switch
+  mode: single

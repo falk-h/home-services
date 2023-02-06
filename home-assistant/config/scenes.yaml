@@ -1,1 +1,657 @@
----
+- id: '1675434968053'
+  name: All off
+  entities:
+    switch.amplifier:
+      friendly_name: Amplifier
+      state: 'off'
+    media_player.android_tv_192_168_1_5:
+      device_class: tv
+      friendly_name: Android TV 192.168.1.5
+      supported_features: 23997
+      state: unavailable
+    light.bedroom_ceiling_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Bedroom Ceiling Light
+      supported_features: 32
+      state: 'off'
+    light.bedside_lamp:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:lamp
+      friendly_name: Bedside Lamp
+      supported_features: 32
+      state: 'off'
+    light.dining_table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Dining Table Light
+      supported_features: 32
+      state: 'off'
+    light.hall_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Hall Light
+      supported_features: 32
+      state: 'off'
+    light.shelf_lights:
+      supported_color_modes:
+      - brightness
+      icon: mdi:led-strip
+      friendly_name: Shelf Lights
+      supported_features: 32
+      state: 'off'
+    light.stair_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:wall-sconce-round-variant
+      friendly_name: Stair Light
+      supported_features: 32
+      state: unavailable
+    light.tv_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:globe-light
+      friendly_name: TV Light
+      supported_features: 32
+      state: 'off'
+    light.table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      - hs
+      icon: mdi:floor-lamp-torchiere
+      friendly_name: Table Light
+      supported_features: 32
+      state: 'off'
+  icon: mdi:power-off
+  metadata: {}
+- id: '1675436414850'
+  name: All on
+  entities:
+    switch.amplifier:
+      friendly_name: Amplifier
+      state: 'on'
+    light.bedroom_ceiling_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Bedroom Ceiling Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.bedside_lamp:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:lamp
+      friendly_name: Bedside Lamp
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.dining_table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Dining Table Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.hall_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Hall Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.shelf_lights:
+      supported_color_modes:
+      - brightness
+      icon: mdi:led-strip
+      friendly_name: Shelf Lights
+      supported_features: 32
+      color_mode: brightness
+      brightness: 254
+      state: 'on'
+    light.stair_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:wall-sconce-round-variant
+      friendly_name: Stair Light
+      supported_features: 32
+      state: unavailable
+    light.tv_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:globe-light
+      friendly_name: TV Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      - hs
+      icon: mdi:floor-lamp-torchiere
+      friendly_name: Table Light
+      supported_features: 32
+      color_mode: hs
+      brightness: 254
+      hs_color:
+      - 32.179
+      - 35.687
+      rgb_color:
+      - 255
+      - 212
+      - 163
+      xy_color:
+      - 0.418
+      - 0.375
+      state: 'on'
+  icon: mdi:power
+  metadata: {}
+- id: '1675436684740'
+  name: Sleepytime
+  entities:
+    switch.amplifier:
+      friendly_name: Amplifier
+      state: 'off'
+    light.bedroom_ceiling_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Bedroom Ceiling Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 3
+      color_temp: 400
+      hs_color:
+      - 28.874
+      - 72.522
+      rgb_color:
+      - 255
+      - 159
+      - 70
+      xy_color:
+      - 0.546
+      - 0.389
+      state: 'on'
+    light.bedside_lamp:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:lamp
+      friendly_name: Bedside Lamp
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 3
+      color_temp: 400
+      hs_color:
+      - 28.874
+      - 72.522
+      rgb_color:
+      - 255
+      - 159
+      - 70
+      xy_color:
+      - 0.546
+      - 0.389
+      state: 'on'
+    light.dining_table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Dining Table Light
+      supported_features: 32
+      state: 'off'
+    light.hall_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Hall Light
+      supported_features: 32
+      state: 'off'
+    light.shelf_lights:
+      supported_color_modes:
+      - brightness
+      icon: mdi:led-strip
+      friendly_name: Shelf Lights
+      supported_features: 32
+      state: 'off'
+    light.stair_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:wall-sconce-round-variant
+      friendly_name: Stair Light
+      supported_features: 32
+      state: unavailable
+    light.tv_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:globe-light
+      friendly_name: TV Light
+      supported_features: 32
+      state: 'off'
+    light.table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      - hs
+      icon: mdi:floor-lamp-torchiere
+      friendly_name: Table Light
+      supported_features: 32
+      state: 'off'
+  icon: mdi:bed
+  metadata: {}
+- id: '1675436826568'
+  name: All dim
+  entities:
+    light.bedroom_ceiling_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Bedroom Ceiling Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 3
+      color_temp: 400
+      hs_color:
+      - 28.874
+      - 72.522
+      rgb_color:
+      - 255
+      - 159
+      - 70
+      xy_color:
+      - 0.546
+      - 0.389
+      state: 'on'
+    light.bedside_lamp:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:lamp
+      friendly_name: Bedside Lamp
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 3
+      color_temp: 400
+      hs_color:
+      - 28.874
+      - 72.522
+      rgb_color:
+      - 255
+      - 159
+      - 70
+      xy_color:
+      - 0.546
+      - 0.389
+      state: 'on'
+    light.dining_table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Dining Table Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 3
+      color_temp: 401
+      hs_color:
+      - 28.893
+      - 72.776
+      rgb_color:
+      - 255
+      - 158
+      - 69
+      xy_color:
+      - 0.548
+      - 0.389
+      state: 'on'
+    light.hall_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Hall Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 3
+      color_temp: 400
+      hs_color:
+      - 28.874
+      - 72.522
+      rgb_color:
+      - 255
+      - 159
+      - 70
+      xy_color:
+      - 0.546
+      - 0.389
+      state: 'on'
+    light.shelf_lights:
+      supported_color_modes:
+      - brightness
+      icon: mdi:led-strip
+      friendly_name: Shelf Lights
+      supported_features: 32
+      color_mode: brightness
+      brightness: 3
+      state: 'on'
+    light.stair_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:wall-sconce-round-variant
+      friendly_name: Stair Light
+      supported_features: 32
+      state: unavailable
+    light.tv_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:globe-light
+      friendly_name: TV Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 3
+      color_temp: 400
+      hs_color:
+      - 28.874
+      - 72.522
+      rgb_color:
+      - 255
+      - 159
+      - 70
+      xy_color:
+      - 0.546
+      - 0.389
+      state: 'on'
+    light.table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      - hs
+      icon: mdi:floor-lamp-torchiere
+      friendly_name: Table Light
+      supported_features: 32
+      color_mode: hs
+      brightness: 3
+      hs_color:
+      - 29.883
+      - 72.441
+      rgb_color:
+      - 255
+      - 162
+      - 70
+      xy_color:
+      - 0.543
+      - 0.393
+      state: 'on'
+  icon: mdi:toilet
+  metadata: {}
+- id: '1675438773346'
+  name: All lights on
+  entities:
+    light.bedroom_ceiling_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Bedroom Ceiling Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.bedside_lamp:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:lamp
+      friendly_name: Bedside Lamp
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.dining_table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Dining Table Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.hall_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:ceiling-light
+      friendly_name: Hall Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.shelf_lights:
+      supported_color_modes:
+      - brightness
+      icon: mdi:led-strip
+      friendly_name: Shelf Lights
+      supported_features: 32
+      color_mode: brightness
+      brightness: 254
+      state: 'on'
+    light.stair_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:wall-sconce-round-variant
+      friendly_name: Stair Light
+      supported_features: 32
+      state: unavailable
+    light.tv_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      icon: mdi:globe-light
+      friendly_name: TV Light
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
+    light.table_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      - hs
+      icon: mdi:floor-lamp-torchiere
+      friendly_name: Table Light
+      supported_features: 32
+      color_mode: hs
+      brightness: 254
+      hs_color:
+      - 32.174
+      - 35.687
+      rgb_color:
+      - 255
+      - 212
+      - 163
+      xy_color:
+      - 0.418
+      - 0.375
+      state: 'on'
+  metadata: {}
+  icon: mdi:lightbulb-on

@@ -1,1 +1,263 @@
-[]
+- id: '1675438208706'
+  alias: Sleepytime when charging at night
+  description: ''
+  trigger:
+  - type: plugged_in
+    platform: device
+    device_id: 58d091c90e49f5901d38084f1c2de047
+    entity_id: binary_sensor.oneplus_10_pro_is_charging
+    domain: binary_sensor
+  condition:
+  - condition: time
+    before: 05:00:00
+    weekday:
+    - fri
+    - sat
+    - sun
+    - thu
+    - wed
+    - tue
+    - mon
+    after: '21:00:00'
+  - condition: state
+    entity_id: sensor.oneplus_10_pro_wifi_connection
+    state: !secret wifi_ssid
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.sleepytime
+    metadata: {}
+  mode: single
+- id: '1675438678128'
+  alias: Good morning
+  description: Turn on all lights when the phone is plugged out in the morning.
+  trigger:
+  - type: not_plugged_in
+    platform: device
+    device_id: 58d091c90e49f5901d38084f1c2de047
+    entity_id: binary_sensor.oneplus_10_pro_is_charging
+    domain: binary_sensor
+  condition:
+  - condition: time
+    before: '15:00:00'
+    after: 04:00:00
+    weekday:
+    - sun
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+  - condition: state
+    entity_id: sensor.oneplus_10_pro_wifi_connection
+    state: !secret wifi_ssid
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.all_lights_on
+    metadata: {}
+  mode: single
+- id: '1675449639874'
+  alias: Adjust color temperature with slider
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.temperature
+  condition: []
+  action:
+  - parallel:
+    - if:
+      - condition: state
+        entity_id: light.bedroom_ceiling_light
+        state: 'on'
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          color_temp: '{{ states(''input_number.temperature'') | float(0) }}'
+        target:
+          device_id: 5c08d4f423efb31cac383c63008b875e
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.bedside_lamp
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          color_temp: '{{ states(''input_number.temperature'') | float(0) }}'
+        target:
+          device_id: 9ce12866cad7cc641aa6af5f750b9b60
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.dining_table_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          color_temp: '{{ states(''input_number.temperature'') | float(0) }}'
+        target:
+          device_id: b104804a8e89d8ceeeae51f396fa1a4d
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.tv_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          color_temp: '{{ states(''input_number.temperature'') | float(0) }}'
+        target:
+          device_id: f427a11829812ed7206c981883f28202
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.hall_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          color_temp: '{{ states(''input_number.temperature'') | float(0) }}'
+        target:
+          device_id: 8bc260b41345719dff967079a272e9e2
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.stair_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          color_temp: '{{ states(''input_number.temperature'') | float(0) }}'
+        target:
+          device_id: 4b44d7aeccfdf9625344cf420c6bdf07
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.table_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          color_temp: '{{ states(''input_number.temperature'') | float(0) }}'
+        target:
+          device_id: 05d99dfc98aae165111d227dcef2d751
+  mode: restart
+- id: '1675452068533'
+  alias: Adjust brightness with slider
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.brightness
+  condition: []
+  action:
+  - parallel:
+    - if:
+      - condition: state
+        entity_id: light.bedroom_ceiling_light
+        state: 'on'
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          brightness_pct: '{{ states(''input_number.brightness'') | float(0) }}'
+        target:
+          device_id: 5c08d4f423efb31cac383c63008b875e
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.bedside_lamp
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          brightness_pct: '{{ states(''input_number.brightness'') | float(0) }}'
+        target:
+          device_id: 9ce12866cad7cc641aa6af5f750b9b60
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.dining_table_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          brightness_pct: '{{ states(''input_number.brightness'') | float(0) }}'
+        target:
+          device_id: b104804a8e89d8ceeeae51f396fa1a4d
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.tv_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          brightness_pct: '{{ states(''input_number.brightness'') | float(0) }}'
+        target:
+          device_id: f427a11829812ed7206c981883f28202
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.hall_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          brightness_pct: '{{ states(''input_number.brightness'') | float(0) }}'
+        target:
+          device_id: 8bc260b41345719dff967079a272e9e2
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.stair_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          brightness_pct: '{{ states(''input_number.brightness'') | float(0) }}'
+        target:
+          device_id: 4b44d7aeccfdf9625344cf420c6bdf07
+    - if:
+      - condition: state
+        state: 'on'
+        entity_id: light.table_light
+      then:
+      - service: light.turn_on
+        data_template:
+          transition: 1
+          brightness_pct: '{{ states(''input_number.brightness'') | float(0) }}'
+        target:
+          device_id: 05d99dfc98aae165111d227dcef2d751
+    - if:
+      - condition: state
+        entity_id: light.shelf_lights
+        state: 'on'
+      then:
+      - service: light.turn_on
+        data:
+          brightness_pct: '{{ states(''input_number.brightness'') | float(0) }}'
+        target:
+          device_id: 774aeb47dd1bc95cebd25da7396f92d2
+  mode: restart
+- id: '1675458757101'
+  alias: Turn lights on with alarm
+  description: ''
+  trigger:
+  - platform: template
+    value_template: ''
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.oneplus_10_pro_next_alarm
+      state: unavailable
+    - condition: state
+      entity_id: sensor.oneplus_10_pro_next_alarm
+      state: unknown
+  action: []
+  mode: restart
