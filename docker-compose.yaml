@@ -77,7 +77,6 @@ services:
     environment:
       RUST_LOG: "${RUST_LOG:-info,tower_http::trace=debug}"
     volumes:
-      - ./website/markdown:/markdown:ro
       - ./website/templates:/templates:ro
       - ./website/static:/static:ro
     restart: unless-stopped
