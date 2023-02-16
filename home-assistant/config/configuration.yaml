@@ -19,3 +19,8 @@ http:
   trusted_proxies:
     - 172.10.0.0/24   # Docker network address range
     - 192.168.1.0/24  # Local network
+
+sensor:
+  - platform: time_date
+    display_options:
+      - 'date_time_utc'
