@@ -12,6 +12,8 @@ services:
     volumes:
       - ./godns/config:/config:ro
     restart: unless-stopped
+    depends_on:
+      - pi-hole
 
   home-assistant:
     image: ghcr.io/home-assistant/home-assistant:stable
@@ -20,6 +22,9 @@ services:
       - ./home-assistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
+    depends_on:
+      - pi-hole
+      - swag
 
   nextcloud:
     image: lscr.io/linuxserver/nextcloud:latest
@@ -29,6 +34,9 @@ services:
       - ./nextcloud/config:/config
       - ./nextcloud/data:/data
     restart: unless-stopped
+    depends_on:
+      - pi-hole
+      - swag
 
   pi-hole:
     image: pihole/pihole:latest
@@ -49,6 +57,8 @@ services:
       - ./pi-hole/config:/etc/pihole
       - ./pi-hole/dnsmasq.d:/etc/dnsmasq.d
     restart: unless-stopped
+    depends_on:
+      - swag
 
   swag:
     image: lscr.io/linuxserver/swag:latest
@@ -68,6 +78,10 @@ services:
     volumes:
       - ./swag/config:/config
     restart: unless-stopped
+    depends_on:
+      # SWAG dosen't start up properly until the website container exists. Not
+      # sure why. Maybe because that's the only website that's not a subdomain?
+      - website
 
   website:
     build:
