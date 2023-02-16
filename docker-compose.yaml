@@ -16,11 +16,14 @@ services:
       - pi-hole
 
   home-assistant:
-    image: ghcr.io/home-assistant/home-assistant:stable
-    privileged: true
+    image: lscr.io/linuxserver/homeassistant:latest
+    environment:
+      DOCKER_MODS: linuxserver/mods:homeassistant-hacs
+      PGID: "${GID?Create a .env file! See env.template}"
+      PUID: "${UID?Create a .env file! See env.template}"
+      TZ: *time-zone
     volumes:
       - ./home-assistant/config:/config
-      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     depends_on:
       - pi-hole
@@ -29,6 +32,8 @@ services:
   nextcloud:
     image: lscr.io/linuxserver/nextcloud:latest
     environment:
+      PGID: "${GID?Create a .env file! See env.template}"
+      PUID: "${UID?Create a .env file! See env.template}"
       TZ: *time-zone
     volumes:
       - ./nextcloud/config:/config
@@ -50,6 +55,10 @@ services:
       DNSMASQ_LISTENING: all
       FTLCONF_REPLY_ADDR4: "${LOCAL_IP?Create a .env file! See env.template}"
       PIHOLE_DNS_: 1.1.1.1;1.0.0.1
+      # The UID/GID variables are marked as experimental, so this might break in
+      # the future.
+      PIHOLE_GID: "${GID?Create a .env file! See env.template}"
+      PIHOLE_UID: "${UID?Create a .env file! See env.template}"
       TZ: *time-zone
       WEBPASSWORD: "${PIHOLE_WEB_PASSWORD?Create a .env file! See env.template}"
       WEBTHEME: default-dark
@@ -75,6 +84,8 @@ services:
       CERTPROVIDER: letsencrypt
       EMAIL: "${SWAG_EMAIL?Create a .env file! See env.template}"
       STAGING: 'false'
+      PUID: "${UID?Create a .env file! See env.template}"
+      PGID: "${GID?Create a .env file! See env.template}"
     volumes:
       - ./swag/config:/config
     restart: unless-stopped
