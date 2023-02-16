@@ -52,6 +52,7 @@ impl PartialOrd for ServiceData {
 pub async fn check_statuses(checker: &StatusChecker) -> Vec<ServiceData> {
     let services = SERVICES.get_or_init(|| {
         let pi_hole_name = "pi-hole";
+        let pi_hole_url = Url::parse(&format!("https://{pi_hole_name}.hoppner.se/admin/")).unwrap();
         let selftest_url =
             Url::parse("https://hoppner.se/ping").expect("Failed to parse URL for selftest");
 
@@ -80,7 +81,7 @@ pub async fn check_statuses(checker: &StatusChecker) -> Vec<ServiceData> {
             Service {
                 container_name: pi_hole_name,
                 name: "Pi-Hole",
-                link: None,
+                link: Some(pi_hole_url),
                 status_check: StatusCheck::PiHole {
                     container_name: pi_hole_name,
                     port: 53,
