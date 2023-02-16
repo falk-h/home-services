@@ -38,6 +38,8 @@ services:
       - 53:53/udp
       # Don't open HTTP here as that's reverse proxied by SWAG
     environment:
+      # Setting DNSMASQ_LISTENING is recommended by the readme on Docker Hub
+      DNSMASQ_LISTENING: all
       FTLCONF_REPLY_ADDR4: "${LOCAL_IP?Create a .env file! See env.template}"
       PIHOLE_DNS_: 1.1.1.1;1.0.0.1
       TZ: *time-zone
