@@ -22,6 +22,14 @@ GoDNS can't create new subdomains on Cloudflare. Make sure to create all
 subdomains that are configured in `godns/config/config.yaml` in the [Cloudflare
 dashboard](https://dash.cloudflare.com).
 
+### Home Assistant
+
+Fill in [`secrets.yaml`](./home-assistant/config/secrets.yaml).
+
+Adjust
+[`home-assistant.subdomain.conf`](./swag/config/nginx/proxy-confs/home-assistant.subdomain.conf)
+to use the host's IP address.
+
 ### Pi-hole
 
 *See also [the official docs for

@@ -1,6 +1,14 @@
 ---
 x-variables:
   time-zone: &time-zone Europe/Stockholm
+  defaults: &defaults
+    restart: unless-stopped
+    extra_hosts:
+      - home-assistant:${LOCAL_IP?Create a .env file! See env.template}
+  lsio_envs: &lsio-envs
+    PGID: "${GID?Create a .env file! See env.template}"
+    PUID: "${UID?Create a .env file! See env.template}"
+    TZ: *time-zone
 
 services:
   godns:
@@ -11,37 +19,33 @@ services:
         BASE_IMAGE_TAG: 1.20-alpine
     volumes:
       - ./godns/config:/config:ro
-    restart: unless-stopped
     depends_on:
       - pi-hole
+    <<: *defaults
 
   home-assistant:
     image: lscr.io/linuxserver/homeassistant:latest
     environment:
+      <<: *lsio-envs
       DOCKER_MODS: linuxserver/mods:homeassistant-hacs
-      PGID: "${GID?Create a .env file! See env.template}"
-      PUID: "${UID?Create a .env file! See env.template}"
-      TZ: *time-zone
     volumes:
       - ./home-assistant/config:/config
-    restart: unless-stopped
+    network_mode: host
     depends_on:
       - pi-hole
       - swag
+    <<: *defaults
 
   nextcloud:
     image: lscr.io/linuxserver/nextcloud:latest
-    environment:
-      PGID: "${GID?Create a .env file! See env.template}"
-      PUID: "${UID?Create a .env file! See env.template}"
-      TZ: *time-zone
+    environment: *lsio-envs
     volumes:
       - ./nextcloud/config:/config
       - ./nextcloud/data:/data
-    restart: unless-stopped
     depends_on:
       - pi-hole
       - swag
+    <<: *defaults
 
   pi-hole:
     image: pihole/pihole:latest
@@ -65,9 +69,9 @@ services:
     volumes:
       - ./pi-hole/config:/etc/pihole
       - ./pi-hole/dnsmasq.d:/etc/dnsmasq.d
-    restart: unless-stopped
     depends_on:
       - swag
+    <<: *defaults
 
   swag:
     image: lscr.io/linuxserver/swag:latest
@@ -77,22 +81,20 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      TZ: *time-zone
+      <<: *lsio-envs
       URL: hoppner.se
       SUBDOMAINS: nextcloud,home-assistant,pi-hole,
       VALIDATION: http
       CERTPROVIDER: letsencrypt
       EMAIL: "${SWAG_EMAIL?Create a .env file! See env.template}"
       STAGING: 'false'
-      PUID: "${UID?Create a .env file! See env.template}"
-      PGID: "${GID?Create a .env file! See env.template}"
     volumes:
       - ./swag/config:/config
-    restart: unless-stopped
     depends_on:
       # SWAG dosen't start up properly until the website container exists. Not
       # sure why. Maybe because that's the only website that's not a subdomain?
       - website
+    <<: *defaults
 
   website:
     build:
@@ -106,7 +108,7 @@ services:
     volumes:
       - ./website/templates:/templates:ro
       - ./website/static:/static:ro
-    restart: unless-stopped
+    <<: *defaults
 
 networks:
   default:
