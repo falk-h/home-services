@@ -59,7 +59,7 @@ Change the version if it's pinned in
 [docker-compose.yaml](./docker-compose.yaml) and run something like this:
 
 ```shell
-./compose_wrap.sh up -d --build --pull always <service>
+docker compose up -d --build --pull always <service>
 ```
 
 This will pull new versions of images and/or rebuild images that are built from

@@ -38,10 +38,10 @@ services:
       - 53:53/udp
       # Don't open HTTP here as that's reverse proxied by SWAG
     environment:
-      FTLCONF_REPLY_ADDR4: "${LOCAL_IP?Run with compose_wrap.sh!}"
+      FTLCONF_REPLY_ADDR4: "${LOCAL_IP?Create a .env file! See env.template}"
       PIHOLE_DNS_: 1.1.1.1;1.0.0.1
       TZ: *time-zone
-      WEBPASSWORD: "${PIHOLE_WEB_PASSWORD?Run with compose_wrap.sh!}"
+      WEBPASSWORD: "${PIHOLE_WEB_PASSWORD?Create a .env file! See env.template}"
       WEBTHEME: default-dark
     volumes:
       - ./pi-hole/config:/etc/pihole
@@ -61,7 +61,7 @@ services:
       SUBDOMAINS: nextcloud,home-assistant,pi-hole,
       VALIDATION: http
       CERTPROVIDER: letsencrypt
-      EMAIL: "${SWAG_EMAIL?Run with compose_wrap.sh!}"
+      EMAIL: "${SWAG_EMAIL?Create a .env file! See env.template}"
       STAGING: 'false'
     volumes:
       - ./swag/config:/config
