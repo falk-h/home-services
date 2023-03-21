@@ -9,6 +9,7 @@ interval: 300
 domains:
   - domain_name: hoppner.se
     sub_domains:
+      - "@"  # Also update the root domain
       - cloud
       - pi-hole
       - home-assistant
