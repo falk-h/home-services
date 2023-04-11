@@ -67,7 +67,7 @@
       icon: mdi:wall-sconce-round-variant
       friendly_name: Stair Light
       supported_features: 32
-      state: unavailable
+      state: 'off'
     light.tv_light:
       min_color_temp_kelvin: 2202
       max_color_temp_kelvin: 4000
@@ -226,7 +226,21 @@
       icon: mdi:wall-sconce-round-variant
       friendly_name: Stair Light
       supported_features: 32
-      state: unavailable
+      color_mode: color_temp
+      brightness: 254
+      color_temp_kelvin: 4000
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
     light.tv_light:
       min_color_temp_kelvin: 2202
       max_color_temp_kelvin: 4000
@@ -383,7 +397,7 @@
       icon: mdi:wall-sconce-round-variant
       friendly_name: Stair Light
       supported_features: 32
-      state: unavailable
+      state: 'off'
     light.tv_light:
       min_color_temp_kelvin: 2202
       max_color_temp_kelvin: 4000
@@ -537,7 +551,20 @@
       icon: mdi:wall-sconce-round-variant
       friendly_name: Stair Light
       supported_features: 32
-      state: unavailable
+      color_mode: color_temp
+      brightness: 3
+      color_temp: 400
+      hs_color:
+      - 28.874
+      - 72.522
+      rgb_color:
+      - 255
+      - 159
+      - 70
+      xy_color:
+      - 0.546
+      - 0.389
+      state: 'on'
     light.tv_light:
       min_color_temp_kelvin: 2202
       max_color_temp_kelvin: 4000
@@ -719,7 +746,21 @@
       icon: mdi:wall-sconce-round-variant
       friendly_name: Stair Light
       supported_features: 32
-      state: unavailable
+      color_mode: color_temp
+      brightness: 254
+      color_temp_kelvin: 4000
+      color_temp: 250
+      hs_color:
+      - 26.812
+      - 34.87
+      rgb_color:
+      - 255
+      - 205
+      - 166
+      xy_color:
+      - 0.421
+      - 0.364
+      state: 'on'
     light.tv_light:
       min_color_temp_kelvin: 2202
       max_color_temp_kelvin: 4000
