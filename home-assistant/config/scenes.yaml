@@ -4,11 +4,6 @@
     switch.amplifier:
       friendly_name: Amplifier
       state: 'off'
-    media_player.android_tv_192_168_1_5:
-      device_class: tv
-      friendly_name: Android TV 192.168.1.5
-      supported_features: 23997
-      state: unavailable
     light.bedroom_ceiling_light:
       min_mireds: 250
       max_mireds: 454
